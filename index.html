@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <script src="https://unpkg.com/vue@next"></script>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400" rel="stylesheet">
+
+  <style>
+    @font-face {
+      font-family: 'Source Code Pro';
+      src: url('https://fonts.googleapis.com/css2?family=Source+Code+Pro') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+  </style>
+
+  <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.2.0/styles/vs.min.css">
+  <script src="https://unpkg.com/@highlightjs/cdn-assets@11.2.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+
+  <title>Document</title>
+
+  <style>
+    .web-code-font {
+      font-family:
+        'Roboto Mono',
+        'Noto Sans JP',
+        sans-serif;
+    }
+
+    .mac-code-font {
+      font-family:
+        'Menlo',
+        'Noto Sans JP',
+        sans-serif;
+    }
+
+    code {
+      padding: 0 !important;
+      margin: -24px 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <div style="display: flex;">
+      <font-test-box></font-test-box>
+      <font-test-box></font-test-box>
+    </div>
+
+    <script>
+      const app = Vue.createApp({})
+    </script>
+
+    <template id="font-test-box">
+      <div style="margin: 8px;">
+        <input v-model="font" type="text" autocomplete="on" list="fonts" style=" font-size: 1.2em; width: 80%;">
+
+        <datalist id="fonts">
+          <option value="'Menlo', 'Hiragino Kaku Gothic ProN'">
+          <option value="'Roboto Mono', 'Noto Sans JP'">
+          <option value="'Source Code Pro'">
+        </datalist>
+
+        <pre :style="style">
+Aa Bb Cc Dd Ee Ff Gg Hh Ii Jj Kk Ll Mm
+Nn Oo Pp Qq Rr Ss Tt Uu Vv Ww Xx Yy Zz
+0123456789 () [] {} <> ,."'^`*-=_~+:; \/ $#!%
+-> => <- <= >= >- */ /* /24 == != %% ||
+
+<code class="javascript" :style="style">
+for i in (var i = 0; i < 996; i++) {
+  lilyFunction.f("liIIl|oQO0@b69g/")["mnh"][13]
+}
+</code>
+
+あいうえお かきくけこ さしすせそ たちつてと なにぬねの
+はひふへほ まみむめも や　ゆ　よ らりるれろ わ　お　ん
+がぎぐげご ざじずぜぞ だぢづでど ばびぶべぼ ぱぴぷぺぽ
+
+アイウエオ カキクケコ サシスセソ タチツテト ナニヌネノ
+ハヒフヘホ マミムメモ ヤ　ユ　ヨ ラリルレロ ワーオーン
+ガギグゲゴ ザジズゼゾ ダヂヅデド バビブベボ パピプペポ
+        </pre>
+      </div>
+    </template>
+
+    <script>
+      app.component('font-test-box', {
+        template: document.getElementById("font-test-box").innerHTML,
+        props: {
+          font: String,
+        },
+
+        data() {
+          return {
+            font: ""
+          }
+        },
+        computed: {
+          style() {
+            if (this.font) {
+              return `font-family: ${this.font}, Noto Sans JP, sans-serif;`
+            } else {
+              return `font-family: Noto Sans JP, sans-serif;`
+            }
+          }
+        }
+      })
+    </script>
+
+    <script>
+      app.mount('#app')
+    </script>
+
+
+</body>
+
+</html>
